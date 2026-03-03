@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Solicitud de Material</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="form-estilos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+  <div class="contenedor-formulario" id="zona-a-imprimir">
+    
+    <div class="cabecera">
+      <div class="logo-empresa">
+        <img src="anro.png" alt="Logo Grupo Anro">
+      </div>
+      <div class="datos-empresa">
+        <h2>INDUSTRIAS METÁLICAS ANRO S.L.U.</h2>
+        <p>CTRA VILLARROBLEDO KM 4, TOMELLOSO</p>
+      </div>
+    </div>
+
+    <h1 class="asunto">Asunto: Solicitud de Equipamiento Informático</h1>
+
+    <form id="formulario-material">
+      
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Nombre de la persona solicitante:</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label>Fecha:</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Puesto de trabajo:</label>
+          <input type="text" id="puesto" name="puesto" required>
+        </div>
+        <div class="campo" style="position: relative;">
+          <label>Persona responsable (Correo):</label>
+          <input type="text" id="responsable" name="responsable" autocomplete="off" required>
+          <div id="lista-directores" class="sugerencias-lista"></div>
+        </div>
+      </div>
+
+      <p class="texto-oficial">
+        Me dirijo al departamento de sistemas para solicitar el siguiente equipamiento informático necesario para llevar a cabo mis funciones de manera adecuada.
+      </p>
+
+      <div class="campo-largo">
+        <label>NECESIDADES:</label>
+        <textarea id="necesidades" name="necesidades" rows="4" required></textarea>
+      </div>
+
+      <div class="campo-largo">
+        <label>MOTIVOS:</label>
+        <textarea id="motivos" name="motivos" rows="4" required></textarea>
+      </div>
+
+      <p class="texto-oficial">
+        Agradecemos su pronta atención a esta solicitud y esperamos poder contar con su apoyo para adquirir el equipamiento necesario en el menor tiempo posible.
+        <br><br>
+        Quedo a su disposición para cualquier aclaración o información adicional que puedan necesitar.
+      </p>
+
+      <div class="zona-firmas">
+        
+        <div class="firma" id="bloque-solicitante">
+          <p>Firma del solicitante:</p>
+          <div class="contenedor-opciones-firma" id="botones-firma-1">
+            <button type="button" class="btn-tab" onclick="cambiarPestana('upload-1', 'draw-1', this)">Subir</button>
+            <button type="button" class="btn-tab activo" onclick="cambiarPestana('draw-1', 'upload-1', this)">Dibujar</button>
+          </div>
+          <div class="caja-firma-interactiva" id="caja-firma-1">
+            <label id="upload-1" for="file-1" class="custum-file-upload" style="display:none;">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"></path>
+                </svg>
+              </div>
+              <div class="text"><span id="nombre-archivo">Subir imagen (.jpg o .png)</span></div>
+              <input id="file-1" type="file" accept=".jpg, .jpeg, .png">
+            </label>
+            <canvas id="draw-1" class="lienzo-firma"></canvas>
+          </div>
+        </div>
+
+        <div class="firma" id="bloque-representante">
+          <p>Firma del representante:</p>
+          <div class="caja-firma-vacia"></div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="boton-enviar" id="btn-enviar">Enviar Datos</button>
+      <div id="mensaje-exito" class="mensaje-exito"></div>
+      
+    </form>
+
+  </div>
+
+  <script src="form.js"></script>
+</body>
+</html>
